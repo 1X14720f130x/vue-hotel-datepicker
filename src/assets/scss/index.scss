@@ -8,7 +8,7 @@ $gray: #424b53;
 $primary-text-color: #35343d;
 $primary-text-inverse-color: #fff;
 $lightest-gray: #f3f5f8;
-$primary-color: #0fb8ad;
+$primary-color: #dda474;
 $medium-gray: #424b53;
 $light-gray: #eaeaea;
 $disabledBg: #f5f7f8;
@@ -25,9 +25,8 @@ $colorValidHoverDate: $white;
 $bgRollActiveDage: $primary-color;
 $colorRollActiveDage: $white;
 
-$font-size: 17èpx;
+$font-size: 17px;
 $font-small: #{$font-size * 0.875};
-$font-family: 'Source Sans Pro', sans-serif, verdana, arial;
 $font-regular: 400;
 $font-bold: 700;
 $tooltip-font-size: 11px;
@@ -71,7 +70,6 @@ $extra-small-screen: '(max-width: 23em)';
   transition: all 0.2s ease-in-out;
   background-color: $background-color;
   font-size: $font-size;
-  font-family: $font-family;
   line-height: 0.875em;
   overflow: hidden;
 
@@ -83,6 +81,7 @@ $extra-small-screen: '(max-width: 23em)';
     position: relative;
     width: calc(100% / 7);
     float: left;
+
     &:last-child {
       margin-bottom: 1.5em;
     }
@@ -183,6 +182,7 @@ $extra-small-screen: '(max-width: 23em)';
           transform: none;
         }
       }
+
       .#{$prefix}__month-day:before {
         display: none;
       }
@@ -199,6 +199,7 @@ $extra-small-screen: '(max-width: 23em)';
     .vhd__hide-on-desktop {
       display: none;
     }
+
     .#{$prefix} {
       position: relative;
       top: 0;
@@ -307,21 +308,40 @@ $extra-small-screen: '(max-width: 23em)';
   &__month-day-wrapper {
     height: 0;
     padding-top: calc(100% - 1px); //fix for safari
+
+
     span.day {
       z-index: 1;
       position: absolute;
-      top: 50%;
+      top: 80%;
       left: 50%;
       transform: translate(-50%, -50%);
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #333;
     }
 
     .price {
       position: absolute;
-      top: 0;
-      width: 100%;
-      text-align: left;
-      font-weight: bold;
-      font-size: 0.95em;
+      top: 8px;
+      left: 5px;
+      font-weight: $font-regular;
+      font-size: 1.0em;
+      color: #026605;
+      
+    }
+
+    .stock {
+      position: absolute;
+      top: 3px;
+      right: 0px;
+      font-weight: $font-regular;
+      font-size: 1.0em;
+      color: #a17855;
+      padding: 2px 8px; /* Adds padding inside the box */
+      border-left: 1px solid #a17855; /* Left border */
+      border-bottom: 1px solid #a17855; /* Bottom border */
+      padding-right: 10px; /* Extends the length of the border */
     }
   }
 
@@ -367,6 +387,7 @@ $extra-small-screen: '(max-width: 23em)';
       cursor: not-allowed;
       pointer-events: none;
       font-weight: $font-regular;
+
       span {
         text-decoration: line-through;
       }
@@ -379,6 +400,7 @@ $extra-small-screen: '(max-width: 23em)';
       font-weight: $font-regular;
       cursor: default;
       background: transparent;
+
       span {
         text-decoration: none;
       }
@@ -392,6 +414,7 @@ $extra-small-screen: '(max-width: 23em)';
     &--halfCheckOut {
       position: relative;
       overflow: hidden;
+
       &:before {
         content: '';
         position: absolute;
@@ -420,9 +443,11 @@ $extra-small-screen: '(max-width: 23em)';
     &--selected {
       background-color: rgba($primary-color, 0.7);
       color: $primary-text-inverse-color;
+
       span {
         text-decoration: none;
       }
+
       &:hover {
         font-weight: $font-bold;
         background-color: $bgRollActiveDage;
@@ -436,6 +461,7 @@ $extra-small-screen: '(max-width: 23em)';
       color: $primary-text-inverse-color;
       font-weight: $font-bold;
       cursor: pointer;
+
       span {
         text-decoration: none;
       }
@@ -448,6 +474,7 @@ $extra-small-screen: '(max-width: 23em)';
       cursor: pointer;
       font-weight: $font-bold;
       pointer-events: auto;
+
       span {
         text-decoration: none;
       }
@@ -463,6 +490,7 @@ $extra-small-screen: '(max-width: 23em)';
       font-weight: $font-regular;
       position: relative;
       pointer-events: none;
+
       span {
         text-decoration: none;
       }
@@ -514,6 +542,7 @@ $extra-small-screen: '(max-width: 23em)';
       pointer-events: none;
     }
   }
+
   &__inner {
     padding: 0 2.5rem;
     position: relative;
@@ -526,9 +555,11 @@ $extra-small-screen: '(max-width: 23em)';
 
   &__months-wrapper {
     height: 100%;
+
     .#{$prefix}__months {
       margin-top: 0;
       height: 100%;
+
       .#{$prefix}__month .#{$prefix}week-name {
         font-size: 1.25em;
       }
@@ -540,6 +571,7 @@ $extra-small-screen: '(max-width: 23em)';
       margin-top: 10em;
       height: calc(100% - 10em);
     }
+
     .#{$prefix}__tooltip--mobile {
       height: auto;
       opacity: 1;
@@ -836,6 +868,7 @@ $extra-small-screen: '(max-width: 23em)';
     width: 100%;
     height: $bullet-size;
     transition: opacity ease 0.3s;
+
     @include device($desktop) {
       top: 50%;
     }
@@ -866,6 +899,7 @@ $extra-small-screen: '(max-width: 23em)';
     top: 60%;
     transform: translateY(-50%);
     transition: opacity ease 0.3s;
+
     @include device($desktop) {
       top: 50%;
     }

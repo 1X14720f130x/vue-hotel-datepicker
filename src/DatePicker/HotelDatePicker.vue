@@ -137,6 +137,7 @@
             :screenSize="screenSize"
             :showCustomTooltip="showCustomTooltip"
             :showPrice="showPrice"
+            :showStock="showStock"
             :showWeekNumbers="showWeekNumbers"
             :disabledDates="disabledDates"
             :periodDates="periodDates"
@@ -191,6 +192,7 @@
               :screenSize="screenSize"
               :showCustomTooltip="false"
               :showPrice="showPrice"
+              :showStock="showStock"
               :sortedDisabledDates="sortedDisabledDates"
               :sortedPeriodDates="sortedPeriodDates"
               :tooltipMessage="customTooltipMessage"
@@ -327,6 +329,10 @@ export default {
       default: '',
     },
     showPrice: {
+      type: Boolean,
+      default: false,
+    },
+    showStock: {
       type: Boolean,
       default: false,
     },
@@ -491,6 +497,7 @@ export default {
       return this.tooltipMessage
     },
     sortedPeriodDates() {
+      // take most recent user pricings or default one
       let periodDates = []
 
       if (this.periodDates) {
@@ -500,7 +507,7 @@ export default {
 
           if (isDefault1 !== isDefault2) {
             // Prioritize default entries (It will later inversed)
-            return  isDefault2 - isDefault1
+            return isDefault2 - isDefault1
           }
 
           // If default statuses are the same, sort by updatedAt ascending

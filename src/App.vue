@@ -73,7 +73,10 @@
             <input type="text" v-model="endingDate" /><br />
             <input type="checkbox" v-model="showPeriodDates" /> showPeriodDates<br />
             <input type="checkbox" v-model="showPrice" /> showPrice
-            <span v-if="showPrice">- priceSymbol: <input type="text" v-model="priceSymbol" style="width: 3em" /></span>
+            <input type="checkbox" v-model="showStock" /> showStock
+            <span v-if="showPrice">- priceSymbol: <input type="text" v-model="showPrice" style="width: 3em" /></span>
+            <br />
+            <span v-if="showStock">- stock: <input type="text" v-model="showStock" style="width: 3em" /></span>
             <br />
             <input type="checkbox" v-model="showMinNights" :true-value="minNights" :false-value="false" /> minNights
             <input v-if="showMinNights !== false" type="number" v-model="minNights" min="0" /><br />
@@ -91,6 +94,7 @@
             :showSingleMonth="showSingleMonth"
             :showYear="showYear"
             :showPrice="showPrice"
+            :showStock="showStock"
             :showWeekNumbers="showWeekNumbers"
             :priceSymbol="priceSymbol"
             :yearBeforeMonth="yearBeforeMonth"
@@ -397,6 +401,7 @@ export default {
       positionRight: false,
       singleDaySelection: false,
       showPrice: false,
+      showStock: false,
       showYear: true,
       yearBeforeMonth: false,
       showMinNights: false,
@@ -522,7 +527,6 @@ body {
 }
 body {
   display: block;
-  font-family: Roboto, 'Source Sans Pro', sans-serif;
   font-size: 16px;
   width: 100vw;
   height: 100vh;

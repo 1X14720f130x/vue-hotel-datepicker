@@ -159,6 +159,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showStock: {
+      type: Boolean,
+      default: false,
+    },
     showWeekNumbers: {
       type: Boolean,
       default: false,

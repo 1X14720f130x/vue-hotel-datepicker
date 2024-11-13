@@ -21,6 +21,7 @@
       <div class="vhd__datepicker__month-day-wrapper">
         <span class="day">{{ dayNumber }}</span>
         <Price :show="showPrice" :price="dayPrice" :symbol="priceSymbol" />
+        <Stock :show="showStock" :stock="dayStock" />
       </div>
     </div>
     <BookingBullet
@@ -38,12 +39,14 @@ import fecha from 'fecha'
 import Helpers from '../../helpers'
 import BookingBullet from './BookingBullet.vue'
 import Price from './Price.vue'
+import Stock from './Stock.vue'
 
 export default {
   name: 'Day',
   components: {
     BookingBullet,
     Price,
+    Stock,
   },
   props: {
     bookings: {
@@ -141,6 +144,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showStock: {
+      type: Boolean,
+      default: false,
+    },
     sortedDisabledDates: {
       type: Array,
       default: () => [],
@@ -206,6 +213,11 @@ export default {
           result = currentDate.price
         }
       }
+
+      return String(result)
+    },
+    dayStock() {
+      const result = '4'
 
       return String(result)
     },
@@ -418,7 +430,7 @@ export default {
             ((!this.checkIn && !this.checkOut) || (this.checkIn && this.checkOut)) &&
             this.notAllowedDayDueToNextPeriod(currentPeriod)
           ) {
-            return 'vhd__datepicker__month-day--disabled vhd__datepicker__month-day--not-allowed nightly'
+            return ''
           }
 
           return 'nightly'
