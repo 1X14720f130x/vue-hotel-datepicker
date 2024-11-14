@@ -406,6 +406,10 @@ export default {
         return `${this.halfDayClass}`
       }
 
+      if (this.dayStock === '0') {
+        return 'vhd__datepicker__month-day--valid--exhausted'
+      }
+
       // Good
       return 'vhd__datepicker__month-day--valid'
     },
