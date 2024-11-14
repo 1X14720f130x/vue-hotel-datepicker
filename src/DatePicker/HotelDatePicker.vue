@@ -141,6 +141,7 @@
             :showWeekNumbers="showWeekNumbers"
             :disabledDates="disabledDates"
             :periodDates="periodDates"
+            :stockDates="stockDates"
             :sortedDisabledDates="sortedDisabledDates"
             :sortedPeriodDates="sortedPeriodDates"
             :tooltipMessage="customTooltipMessage"
@@ -315,6 +316,12 @@ export default {
       default: 1,
     },
     periodDates: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
+    stockDates: {
       type: Array,
       default() {
         return []
@@ -501,6 +508,7 @@ export default {
       let periodDates = []
 
       if (this.periodDates) {
+
         const combinedSortFunction = (fecha1, fecha2) => {
           const isDefault1 = fecha1.default
           const isDefault2 = fecha2.default
@@ -750,7 +758,7 @@ export default {
     escFunction(e) {
       const escTouch = 27
 
-      if (e.keyCode === escTouch && this.isOpen && this.checkIn) {
+      if (e.keyCode === escTouch && this.checkIn) {
         this.clearSelection()
       }
     },

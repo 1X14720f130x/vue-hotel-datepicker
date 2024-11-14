@@ -156,6 +156,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    stockDates: {
+      type: Array,
+      default: () => [],
+    },
     tooltipMessage: {
       default: null,
       type: String,
@@ -217,9 +221,10 @@ export default {
       return String(result)
     },
     dayStock() {
-      const result = '4'
+      const stockDate = this.stockDates.find((d) => d.date === this.formatDate)
+      const stock = stockDate ? stockDate.remainingStock : 0
 
-      return String(result)
+      return String(stock)
     },
     halfDayClass() {
       if (Object.keys(this.checkIncheckOutHalfDay).length > 0) {

@@ -179,6 +179,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    stockDates: {
+      type: Array,
+      default: () => [],
+    },
     tooltipMessage: {
       default: null,
       type: String,

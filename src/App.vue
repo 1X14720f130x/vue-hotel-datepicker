@@ -103,6 +103,7 @@
             :lastDateAvailable="showLastDateAvailable ? lastDateAvailable : Infinity"
             :minNights="showMinNights ? minNights : 0"
             :periodDates="periodDates"
+            :stockDates="stockDates"
             :bookings="showBookings ? bookings : []"
             :i18n="i18n"
             @day-clicked="dayClicked"
