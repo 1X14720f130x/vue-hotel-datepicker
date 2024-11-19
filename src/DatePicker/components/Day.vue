@@ -20,8 +20,8 @@
     >
       <div class="vhd__datepicker__month-day-wrapper">
         <span class="day">{{ dayNumber }}</span>
-        <Price :show="showPrice" :price="dayPrice" :symbol="priceSymbol" />
-        <Stock :show="showStock" :stock="dayStock" />
+        <Price :mobile="!isDesktop" :show="showPrice" :price="dayPrice" :symbol="priceSymbol" />
+        <Stock :mobile="!isDesktop" :show="showStock" :stock="dayStock" />
       </div>
     </div>
     <BookingBullet
@@ -52,6 +52,10 @@ export default {
     bookings: {
       type: Array,
       default: () => [],
+    },
+    isDesktop: {
+      type: Boolean,
+      default: true,
     },
     activeMonthIndex: {
       type: Number,
@@ -148,6 +152,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    publicUse: {
+      type: Boolean,
+      default: true,
+    },
     sortedDisabledDates: {
       type: Array,
       default: () => [],
@@ -222,7 +230,7 @@ export default {
     },
     dayStock() {
       const stockDate = this.stockDates.find((d) => d.date === this.formatDate)
-      const stock = stockDate ? stockDate.remainingStock : 0
+      const stock = stockDate ? stockDate.remainingStock : ''
 
       return String(stock)
     },
@@ -397,6 +405,13 @@ export default {
         return `${classSelected} vhd__datepicker__month-day--valid`
       }
 
+      // manage day stock
+      if (this.dayStock === '0') {
+        if (!this.publicUse) return 'vhd__datepicker__month-day--valid--exhausted'
+
+        return 'vhd__datepicker__month-day--disabled'
+      }
+
       // Good
       if (this.isDisabled || this.isADisabledDay) {
         return 'vhd__datepicker__month-day--disabled'
@@ -404,10 +419,6 @@ export default {
 
       if (this.halfDayClass) {
         return `${this.halfDayClass}`
-      }
-
-      if (this.dayStock === '0') {
-        return 'vhd__datepicker__month-day--valid--exhausted'
       }
 
       // Good
@@ -669,6 +680,11 @@ export default {
 
       return false
     },
+    compareEndStockDay() {
+      // ??
+
+      return false
+    },
     checkIfDisabled() {
       this.isDisabled =
         // If this day is equal any of the disabled dates
@@ -679,7 +695,9 @@ export default {
         this.compareEndDay() ||
         // Or is in one of the disabled days of the week
         this.isADisabledDay ||
-        // Or is after max Nights
+        // No availability for the public
+        (this.publicUse && this.dayStock === '0') || 
+        // Or is after max Nights or after no availability day
         (this.date >= this.nextDisabledDate && this.nextDisabledDate !== null)
 
       // Handle checkout enabled

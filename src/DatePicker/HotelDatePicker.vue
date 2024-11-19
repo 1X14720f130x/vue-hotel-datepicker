@@ -138,6 +138,7 @@
             :showCustomTooltip="showCustomTooltip"
             :showPrice="showPrice"
             :showStock="showStock"
+            :publicUse="publicUse"
             :showWeekNumbers="showWeekNumbers"
             :disabledDates="disabledDates"
             :periodDates="periodDates"
@@ -194,6 +195,7 @@
               :showCustomTooltip="false"
               :showPrice="showPrice"
               :showStock="showStock"
+              :pubicUse="pubicUse"
               :sortedDisabledDates="sortedDisabledDates"
               :sortedPeriodDates="sortedPeriodDates"
               :tooltipMessage="customTooltipMessage"
@@ -342,6 +344,10 @@ export default {
     showStock: {
       type: Boolean,
       default: false,
+    },
+    publicUse: {
+      type: Boolean,
+      default: true,
     },
     showSingleMonth: {
       type: Boolean,
@@ -508,7 +514,6 @@ export default {
       let periodDates = []
 
       if (this.periodDates) {
-
         const combinedSortFunction = (fecha1, fecha2) => {
           const isDefault1 = fecha1.default
           const isDefault2 = fecha2.default
@@ -910,7 +915,7 @@ export default {
       }
 
       let nextDisabledDate =
-        (this.maxNights ? this.addDays(date, this.maxNights + 1) : null) ||
+        (this.publicUse) ? this.nextExhaustedDate(date, this.maxNights) : this.addDays(date, this.maxNights + 1) ||
         this.getNextDate(this.sortedDisabledDates, date) ||
         this.nextDateByDayOfWeekArray(this.disabledWeekDaysArray, date, this.i18n) ||
         this.nextBookingDate(date) ||
@@ -977,6 +982,25 @@ export default {
       }
 
       return closest
+    },
+    nextExhaustedDate(date, maxNights) {
+      // Default the closest invalid date to Infinity
+      let closest = Infinity
+      // Calculate the max date based on maxNights
+      const maxDate = maxNights ? this.addDays(date, maxNights + 1) : Infinity
+
+      // Check the stockDates array for the next exhausted date
+      if (this.stockDates.length > 0) {
+        const nextExhausted = this.stockDates.find(
+          (stockDate) => this.compareDay(new Date(stockDate.date), date) > 0 && stockDate.remainingStock === 0,
+        )
+
+        // Update closest with the next exhausted date if found
+        closest = nextExhausted ? new Date(nextExhausted.date).getTime() : Infinity
+      }
+
+      // Return the earlier of maxDate or closest exhausted date
+      return new Date(Math.min(maxDate.getTime(), closest))
     },
     setCustomTooltipOnClick() {
       if (Object.keys(this.checkInPeriod).length > 0 && this.checkInPeriod.periodType.includes('weekly')) {

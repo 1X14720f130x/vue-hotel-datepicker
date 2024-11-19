@@ -1,5 +1,8 @@
 <template>
-  <div v-if="show && stock" class="stock">
+  <div
+    v-if="show && stock"
+    :class="{'stock--mobile': mobile, 'stock': !mobile }"
+  >
     <span class="stock-number">{{ stock }}</span>
   </div>
 </template>
@@ -9,6 +12,10 @@ export default {
   name: 'Stock',
   props: {
     show: {
+      type: Boolean,
+      required: true,
+    },
+    mobile: {
       type: Boolean,
       required: true,
     },

@@ -1,5 +1,9 @@
 <template>
-  <div v-if="show && price" class="price">
+  <div
+    v-if="show && price"
+    :class="{
+      'price--mobile': mobile, 'price': !mobile }"
+  >
     <span class="price-number">{{ price }}</span>
     <span class="price-symbol">{{ symbol }}</span>
   </div>
@@ -10,6 +14,10 @@ export default {
   name: 'Price',
   props: {
     show: {
+      type: Boolean,
+      required: true,
+    },
+    mobile: {
       type: Boolean,
       required: true,
     },

@@ -159,9 +159,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    publicUse: {
+      type: Boolean,
+      default: true,
+    },
     showStock: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     showWeekNumbers: {
       type: Boolean,

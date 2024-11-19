@@ -328,9 +328,17 @@ $extra-small-screen: '(max-width: 23em)';
       top: 8px;
       left: 5px;
       font-weight: $font-regular;
-      font-size: 1.0em;
+      font-size: 0.90em;
       color: #026605;
-      
+
+      &--mobile {
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        font-weight: $font-regular;
+        font-size: 0.70em;
+        color: #026605;
+      }
     }
 
     .stock {
@@ -340,10 +348,20 @@ $extra-small-screen: '(max-width: 23em)';
       font-weight: $font-regular;
       font-size: 1.0em;
       color: #184fe7;
-      padding: 2px 8px; /* Adds padding inside the box */
-      border-left: 1px solid #184fe7; /* Left border */
-      border-bottom: 1px solid #184fe7; /* Bottom border */
-      padding-right: 10px; /* Extends the length of the border */
+      padding: 2px 8px;
+      border-left: 1px solid #184fe7;
+      border-bottom: 1px solid #184fe7;
+      padding-right: 10px;
+
+      &--mobile {
+        position: absolute;
+        top: 0px;
+        right: 13px;
+        font-weight: $font-regular;
+        font-size: 1.0em;
+        color: #184fe7;
+        padding: 2px 8px;
+      }
     }
   }
 
