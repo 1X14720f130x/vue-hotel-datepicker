@@ -326,7 +326,7 @@ export default {
         this.minNightCount > 0 &&
         this.compareDay(this.date, this.addDays(this.checkIn, this.minNightCount)) === -1
       ) {
-        return 'vhd__datepicker__month-day--valid vhd__datepicker__month-day--disabled vhd__datepicker__month-day--not-allowed minimumDurationUnvalidDay'
+        return 'vhd__datepicker__month-day--valid vhd__datepicker__month-day--disabled2 minimumDurationUnvalidDay'
       }
 
       // Current Day
