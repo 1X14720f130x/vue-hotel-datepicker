@@ -65,9 +65,6 @@ $extra-small-screen: '(max-width: 23em)';
 * BASE STYLES
 * ============================================================*/
 
-minimumDurationUnvalidDay {
-  display: none;
-}
 
 .#{$prefix} {
   position: absolute;
@@ -551,6 +548,7 @@ minimumDurationUnvalidDay {
     &--hidden {
       opacity: 0;
       pointer-events: none;
+      display: none;
     }
   }
 
@@ -641,7 +639,6 @@ minimumDurationUnvalidDay {
       position: absolute;
       left: 0;
       top: 0;
-      overflow-y: scroll;
       right: 0;
       bottom: 0;
       transition: all ease 0.2s;
@@ -686,7 +683,7 @@ minimumDurationUnvalidDay {
       height: 30em;
 
       &:last-of-type {
-        margin-bottom: 5.416667em;
+        margin-bottom: 0.0em;
       }
     }
 
