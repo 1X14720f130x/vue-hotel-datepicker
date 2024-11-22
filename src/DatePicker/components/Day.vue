@@ -64,6 +64,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    belongsToPreviousMonth: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
     checkIn: {
       type: Date,
     },
@@ -310,7 +315,10 @@ export default {
     },
     dayClass() {
       if (!this.belongsToThisMonth) {
-        // Good
+
+        if(!this.belongsToPreviousMonth)
+          return 'vhd__datepicker__month-day--hidden vhd__datepicker__month-day--invisble'
+
         return 'vhd__datepicker__month-day--hidden'
       }
 
@@ -696,7 +704,7 @@ export default {
         // Or is in one of the disabled days of the week
         this.isADisabledDay ||
         // No availability for the public
-        (this.publicUse && this.dayStock === '0') || 
+        (this.publicUse && this.dayStock === '0') ||
         // Or is after max Nights or after no availability day
         (this.date >= this.nextDisabledDate && this.nextDisabledDate !== null)
 

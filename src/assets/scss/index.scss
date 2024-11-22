@@ -548,6 +548,11 @@ $extra-small-screen: '(max-width: 23em)';
     &--hidden {
       opacity: 0;
       pointer-events: none;
+    }
+
+    &--invisble {
+      opacity: 0;
+      pointer-events: none;
       display: none;
     }
   }
@@ -680,7 +685,7 @@ $extra-small-screen: '(max-width: 23em)';
       width: 100%;
       padding-right: 0;
       padding-top: 5em;
-      height: 30em;
+      //height: 30em;
 
       &:last-of-type {
         margin-bottom: 0.0em;
@@ -722,7 +727,7 @@ $extra-small-screen: '(max-width: 23em)';
       }
 
       &:last-child {
-        padding-right: 2rem;
+        padding-right: 0.5rem;
 
         .#{$prefix}__weeknumbers {
           right: 0;

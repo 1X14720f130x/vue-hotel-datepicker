@@ -11,6 +11,7 @@ describe('Datepicker Day', () => {
       propsData: {
         activeMonthIndex: 0,
         belongsToThisMonth: true,
+        belongsToPreviousMonth: true,
         checkIn: null,
         checkOut: null,
         date: new Date(),

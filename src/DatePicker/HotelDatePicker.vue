@@ -1330,11 +1330,14 @@ export default {
       const month = {
         days: [],
       }
-
+      
       for (let i = 0; i < 42; i++) {
         month.days.push({
           date: this.addDays(firstDay, i),
           belongsToThisMonth: this.addDays(firstDay, i).getMonth() === date.getMonth(),
+          belongsToPreviousMonth: this.getNextMonth(this.addDays(firstDay, i)).getMonth() === date.getMonth()
+          || this.getNextMonth(this.addDays(firstDay, i)).getFullYear() < date.getFullYear()
+          
         })
       }
 
